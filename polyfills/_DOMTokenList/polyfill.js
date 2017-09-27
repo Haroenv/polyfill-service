@@ -1,4 +1,4 @@
-function _DOMTokenList(o, p) {
+function _DOMTokenList(o, p) { // eslint-disable-line no-unused-vars
 	function split(s) {
 		return s.length ? s.split(/\s+/g) : [];
 	}
