@@ -1,4 +1,4 @@
-function _DOMTokenList(o, p) {
+function _DOMTokenList(o, p) { // eslint-disable-line no-unused-vars
 	function split(s) {
 		return s.length ? s.split(/\s+/g) : [];
 	}
@@ -155,16 +155,6 @@ function _DOMTokenList(o, p) {
 			}
 		});
 
-		// shim in index getters (up to 100)
-		for (var i = 0; i < 100; ++i) {
-			Object.defineProperty(this, String(i), {
-				get: (function (n) {
-					return function () {
-						return this.item(n);
-					};
-				}(i))
-			});
-		}
 	} catch (e){
 		// In case getters are not supported
 		this.length = split(o[p]).length;
