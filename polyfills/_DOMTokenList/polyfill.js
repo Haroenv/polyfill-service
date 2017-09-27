@@ -1,4 +1,4 @@
-function _DOMTokenList(o, p) { // eslint-disable-line no-unused-vars
+function _DOMTokenList(o, p) {
 	function split(s) {
 		return s.length ? s.split(/\s+/g) : [];
 	}
@@ -16,12 +16,6 @@ function _DOMTokenList(o, p) { // eslint-disable-line no-unused-vars
 
 	Object.defineProperties(
 		this, {
-			length: {
-				get: function () {
-					return split(o[p]).length;
-				}
-			},
-
 			item: {
 				value: function (idx) {
 					var tokens = split(o[p]);
@@ -153,11 +147,15 @@ function _DOMTokenList(o, p) { // eslint-disable-line no-unused-vars
 				}
 			}
 		});
-	if (!('length' in this)) {
-		// In case getters are not supported
-		this.length = split(o[p]).length;
-	} else {
-		// If they are, shim in index getters (up to 100)
+
+	try {
+		Object.defineProperty(this, 'length', {
+			get: function () {
+				return split(o[p]).length;
+			}
+		});
+
+		// shim in index getters (up to 100)
 		for (var i = 0; i < 100; ++i) {
 			Object.defineProperty(this, String(i), {
 				get: (function (n) {
@@ -167,5 +165,8 @@ function _DOMTokenList(o, p) { // eslint-disable-line no-unused-vars
 				}(i))
 			});
 		}
+	} catch (e){
+		// In case getters are not supported
+		this.length = split(o[p]).length;
 	}
 }
