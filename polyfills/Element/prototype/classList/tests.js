@@ -30,8 +30,8 @@ it("Should allow multiple classes to be added using #add", function() {
 	var classList = el.classList;
 
 	classList.add("classA", "classB");
-	expect(classList.contains("classA")).to.be(true);
-	expect(classList.contains("classB")).to.be(true);
+	proclaim.isTrue(classList.contains("classA"));
+	proclaim.isTrue(classList.contains("classB"));
 });
 
 it("Should force add a class using toggle if the second argument is true", function() {
