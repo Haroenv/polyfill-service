@@ -12,5 +12,12 @@
 		"op_mini": "*",
 		"safari": "*",
 		"firefox_mob": "*"
-	}
+	},
+	"dependencies": [
+		"Array.prototype.filter",
+		"Array.prototype.map",
+		"Array.prototype.some",
+		"Object.defineProperty",
+		"Object.defineProperties"
+	]
 }
